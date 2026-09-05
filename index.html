@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Universe Is Watching You</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #02030a;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* STAR BACKGROUND */
+
+.stars,
+.stars2,
+.stars3 {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.stars {
+    background-image:
+        radial-gradient(1px 1px at 10% 20%, white, transparent),
+        radial-gradient(1px 1px at 30% 80%, white, transparent),
+        radial-gradient(1px 1px at 70% 30%, white, transparent),
+        radial-gradient(1px 1px at 90% 70%, white, transparent),
+        radial-gradient(1px 1px at 50% 50%, white, transparent);
+    background-size: 250px 250px;
+    opacity: .7;
+}
+
+.stars2 {
+    background-image:
+        radial-gradient(1px 1px at 20% 40%, #8ab4ff, transparent),
+        radial-gradient(1px 1px at 80% 20%, #ff8af2, transparent),
+        radial-gradient(1px 1px at 60% 90%, #8ab4ff, transparent);
+    background-size: 350px 350px;
+    opacity: .5;
+}
+
+.stars3 {
+    background-image:
+        radial-gradient(2px 2px at 40% 10%, #ffffff, transparent),
+        radial-gradient(2px 2px at 85% 55%, #ffffff, transparent);
+    background-size: 500px 500px;
+    opacity: .4;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 20px;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 100px;
+    background: rgba(255,255,255,.04);
+    color: #b9c8ff;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+}
+
+h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(45px, 8vw, 100px);
+    line-height: .95;
+    letter-spacing: -5px;
+    margin-bottom: 30px;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #ffffff, #9eabff, #e8a8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: #a9adc4;
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 550px;
+    margin: auto;
+}
+
+.scroll {
+    margin-top: 70px;
+    color: #6d718a;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* FORM */
+
+.section {
+    min-height: 100vh;
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+}
+
+.section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 42px;
+    margin-bottom: 15px;
+    letter-spacing: -2px;
+}
+
+.section-subtitle {
+    color: #858ba7;
+    margin-bottom: 45px;
+    line-height: 1.6;
+}
+
+.form-card {
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 28px;
+    padding: 35px;
+    backdrop-filter: blur(20px);
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    color: #9da3c1;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 28px;
+    background: rgba(0,0,0,.3);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 14px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: .3s;
+}
+
+input:focus,
+select:focus {
+    border-color: #9eabff;
+    box-shadow: 0 0 25px rgba(158,171,255,.1);
+}
+
+option {
+    background: #111322;
+}
+
+.button {
+    width: 100%;
+    padding: 19px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(90deg, #6978ff, #b56cff);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(105,120,255,.25);
+}
+
+/* UNIVERSE */
+
+#universe {
+    display: none;
+    min-height: 100vh;
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.universe-header {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.universe-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(35px, 6vw, 70px);
+    letter-spacing: -3px;
+    margin-bottom: 15px;
+}
+
+.universe-header p {
+    color: #8c91ad;
+}
+
+.space {
+    height: 550px;
+    position: relative;
+    max-width: 1100px;
+    margin: 40px auto 0;
+}
+
+.sun {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff4b0, #ffb347, #ff5e62);
+    box-shadow: 0 0 50px #ff9b5e, 0 0 130px rgba(255,100,100,.35);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.sun::after {
+    content: "";
+    position: absolute;
+    inset: -25px;
+    border: 1px solid rgba(255,180,100,.2);
+    border-radius: 50%;
+    animation: pulse 4s infinite;
+}
+
+.orbit {
+    position: absolute;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.orbit1 {
+    width: 280px;
+    height: 280px;
+}
+
+.orbit2 {
+    width: 470px;
+    height: 470px;
+}
+
+.orbit3 {
+    width: 680px;
+    height: 680px;
+}
+
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    box-shadow: 0 0 30px rgba(255,255,255,.15);
+}
+
+.dream-planet {
+    width: 125px;
+    height: 125px;
+    background: radial-gradient(circle at 30% 25%, #d6b8ff, #7b5cff 45%, #26124f);
+    box-shadow: 0 0 50px rgba(123,92,255,.6);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translateX(235px);
+    animation: float 6s ease-in-out infinite;
+}
+
+.dream-planet::after {
+    content: "";
+    position: absolute;
+    width: 170px;
+    height: 40px;
+    border: 3px solid rgba(190,170,255,.6);
+    border-radius: 50%;
+    transform: rotate(-20deg);
+}
+
+.fear-planet {
+    width: 85px;
+    height: 85px;
+    background: radial-gradient(circle at 30% 30%, #ff9c9c, #d92f55 45%, #300712);
+    box-shadow: 0 0 35px rgba(217,47,85,.5);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translateX(-235px);
+    animation: float 5s ease-in-out infinite reverse;
+}
+
+.constellation {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translateY(-230px);
+}
+
+.constellation span {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 12px white;
+}
+
+.constellation span:nth-child(1) { left: 20%; top: 70%; }
+.constellation span:nth-child(2) { left: 40%; top: 35%; }
+.constellation span:nth-child(3) { left: 65%; top: 55%; }
+.constellation span:nth-child(4) { left: 80%; top: 20%; }
+.constellation span:nth-child(5) { left: 50%; top: 80%; }
+
+.constellation::before {
+    content: "";
+    position: absolute;
+    inset: 20%;
+    background:
+        linear-gradient(35deg, transparent 48%, rgba(255,255,255,.25) 49%, transparent 50%),
+        linear-gradient(-35deg, transparent 48%, rgba(255,255,255,.25) 49%, transparent 50%);
+}
+
+.black-hole {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: #000;
+    border: 8px solid #2c1748;
+    box-shadow:
+        0 0 0 12px #52226d,
+        0 0 40px #b84dff,
+        0 0 100px rgba(184,77,255,.4);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translateY(230px);
+    animation: blackhole 5s ease-in-out infinite;
+}
+
+.black-hole::before {
+    content: "";
+    position: absolute;
+    inset: -25px;
+    border: 2px solid #ff9cf5;
+    border-radius: 50%;
+    transform: rotate(25deg);
+}
+
+.label {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 11px;
+    color: #a9adc4;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.dream-label {
+    left: 50%;
+    top: 50%;
+    transform: translate(250px, 100px);
+}
+
+.fear-label {
+    left: 50%;
+    top: 50%;
+    transform: translate(-300px, 100px);
+}
+
+.name-label {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -340px);
+}
+
+.black-label {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 330px);
+}
+
+/* QUOTE */
+
+.quote {
+    max-width: 700px;
+    margin: 60px auto 0;
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.quote p {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    line-height: 1.5;
+    color: #dce0ff;
+}
+
+.quote span {
+    display: block;
+    margin-top: 15px;
+    color: #727895;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 50px 20px;
+    text-align: center;
+    color: #50556f;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+/* ANIMATIONS */
+
+@keyframes float {
+    0%,100% { margin-top: 0; }
+    50% { margin-top: -20px; }
+}
+
+@keyframes pulse {
+    0%,100% { transform: scale(1); opacity: .5; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes blackhole {
+    0%,100% { box-shadow: 0 0 0 12px #52226d, 0 0 40px #b84dff, 0 0 100px rgba(184,77,255,.4); }
+    50% { box-shadow: 0 0 0 20px #52226d, 0 0 70px #b84dff, 0 0 150px rgba(184,77,255,.5); }
+}
+
+@media (max-width: 700px) {
+    h1 {
+        letter-spacing: -3px;
+    }
+
+    .form-card {
+        padding: 25px;
+    }
+
+    .space {
+        height: 600px;
+        transform: scale(.65);
+        transform-origin: top center;
+    }
+
+    .dream-label {
+        transform: translate(180px, 100px);
+    }
+
+    .fear-label {
+        transform: translate(-230px, 100px);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="hero-content">
+
+        <div class="badge">A cosmic experiment</div>
+
+        <h1>
+            The Universe<br>
+            <span class="gradient-text">Is Watching You.</span>
+        </h1>
+
+        <p>
+            What if your dreams were planets,
+            your fears were black holes,
+            and your name was written in the stars?
+        </p>
+
+        <div class="scroll">
+            ↓ Discover your universe
+        </div>
+
+    </div>
+</section>
+
+<!-- FORM -->
+
+<section class="section">
+    <div class="container">
+
+        <h2 class="section-title">
+            Let's create your universe.
+        </h2>
+
+        <p class="section-subtitle">
+            Three answers. One completely personal cosmos.
+        </p>
+
+        <div class="form-card">
+
+            <label>Your name</label>
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name..."
+            >
+
+            <label>Your biggest dream</label>
+            <select id="dream">
+                <option value="">Choose your dream</option>
+                <option>Explore the universe</option>
+                <option>Become successful</option>
+                <option>Make something extraordinary</option>
+                <option>Help people</option>
+                <option>Discover something new</option>
+            </select>
+
+            <label>Something you fear</label>
+            <select id="fear">
+                <option value="">Choose something</option>
+                <option>Failure</option>
+                <option>Being forgotten</option>
+                <option>Not reaching my potential</option>
+                <option>The unknown</option>
+                <option>Losing someone I love</option>
+            </select>
+
+            <button class="button" onclick="createUniverse()">
+                CREATE MY UNIVERSE ✦
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- UNIVERSE -->
+
+<section id="universe">
+
+    <div class="universe-header">
+
+        <div class="badge">Universe successfully created</div>
+
+        <h2 id="universeTitle">
+            Welcome to your universe.
+        </h2>
+
+        <p>
+            Every star has a story. This one is yours.
+        </p>
+
+    </div>
+
+    <div class="space">
+
+        <div class="sun"></div>
+
+        <div class="orbit orbit1"></div>
+        <div class="orbit orbit2"></div>
+        <div class="orbit orbit3"></div>
+
+        <div class="planet dream-planet"></div>
+
+        <div class="planet fear-planet"></div>
+
+        <div class="constellation">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="black-hole"></div>
+
+        <div class="label dream-label">
+            Your dream
+        </div>
+
+        <div class="label fear-label">
+            Your fear
+        </div>
+
+        <div class="label name-label">
+            Your constellation
+        </div>
+
+        <div class="label black-label">
+            Your black hole
+        </div>
+
+    </div>
+
+    <div class="quote">
+
+        <p id="universeQuote">
+            Your universe is still expanding.
+        </p>
+
+        <span>
+            A message from the cosmos
+        </span>
+
+    </div>
+
+</section>
+
+<footer>
+    Made for curious minds ✦
+</footer>
+
+<script>
+
+function createUniverse() {
+
+    const name = document.getElementById("name").value.trim();
+    const dream = document.getElementById("dream").value;
+    const fear = document.getElementById("fear").value;
+
+    if (!name || !dream || !fear) {
+        alert("Your universe needs all three answers ✦");
+        return;
+    }
+
+    document.getElementById("universeTitle").innerHTML =
+        "Welcome, " + name + ".";
+
+    document.getElementById("universeQuote").innerHTML =
+        "Your dream is a planet. Your fear is a black hole. And you are the one who keeps the universe expanding.";
+
+    document.getElementById("universe").style.display = "block";
+
+    document.getElementById("universe").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+</body>
+                      </html>
